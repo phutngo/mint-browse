@@ -109,3 +109,6 @@ npx hardhat run scripts/sample-script.js
 npx hardhat node //starts up JSON-RPC Hardhat Network 
 npx hardhat run scripts/sample-script.js // this script does a deployment of whatever .sol files is specified inside it
 ```
+
+## TODO
+What's missing with this setup is a frontend to interact with the smart contract - use Scaffold.eth.
