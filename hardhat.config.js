@@ -18,4 +18,16 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
  */
 module.exports = {
   solidity: "0.8.4",
+  defaultNetwork: "localhh",
+  networks: {
+    hardhat: {
+    },
+    localhh: {
+      url: "http://127.0.0.1:8545/",
+    },
+    rinkeby: {
+      url: "https://eth-mainnet.alchemyapi.io/v2/123abc123abc123abc123abc123abcde",
+      accounts: [],
+    },
+  },
 };
