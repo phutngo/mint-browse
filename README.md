@@ -111,4 +111,8 @@ npx hardhat run scripts/sample-script.js // this script does a deployment of wha
 ```
 
 ## TODO
-What's missing with this setup is a frontend to interact with the smart contract - use Scaffold.eth.
+1. Make sure [Code 10000 NFT Mintint Dapp part1](https://www.youtube.com/watch?v=SD1DTrlJeKM&t=1942s) .sol code is tight and can be deployed on remix
+2. Make sure that using remix can deploy on rinkeby
+3. Ensure images work and can see on testnets.opensea
+4. Manually update images to be on nft.storage or pinata.cloud and be able to have smartcontract NFT uri correctly point to them
+5. Figure out how to programmatically using nft.storage API and node.js to post on nft.storage and get back the CID. Then pass the CID into the smartcontract. HOW? Can do this one by one passing the CID as the data when minting? This is lazy minting good right?
