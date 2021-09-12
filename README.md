@@ -111,8 +111,30 @@ npx hardhat run scripts/sample-script.js // this script does a deployment of wha
 ```
 
 ## TODO
-1. Make sure [Code 10000 NFT Mintint Dapp part1](https://www.youtube.com/watch?v=SD1DTrlJeKM&t=1942s) .sol code is tight and can be deployed on remix
+
+### Module 2 - Smart Contract / Backend
+1. Make sure [Code 10000 NFT Mint Dapp part1](https://www.youtube.com/watch?v=SD1DTrlJeKM&t=1942s) .sol code is tight and can be deployed on remix
 2. Make sure that using remix can deploy on rinkeby
 3. Ensure images work and can see on testnets.opensea
 4. Manually update images to be on nft.storage or pinata.cloud and be able to have smartcontract NFT uri correctly point to them
 5. Figure out how to programmatically using nft.storage API and node.js to post on nft.storage and get back the CID. Then pass the CID into the smartcontract. HOW? Can do this one by one passing the CID as the data when minting? This is lazy minting good right?
+6. Premint everything? Then everything is visible on the Smart Contract.Or mint a subset and release in batches? How to ensure that images are uploaded in batches? Can get the CID before upload?
+7. Commented per [Solidity NatSpec](https://docs.soliditylang.org/en/v0.8.3/natspec-format.html#)
+8. 2 or more good design patterns 
+9. Secured - protect against at least 2 attack vectors with [SWC#](https://swcregistry.io/)
+
+## Module 3 - Frontend
+
+this can be learned in the dApp section of bootcamp
+
+(done) Setup cra and hardhat
+learn ethers or web3js(with hardhat)
+react query and querying the blockchain
+
+
+1. A frontend where users can see the images collection.
+2. Users can filter based on the layers and each variations.
+3. User can click "buy button" on the NFT and metamask opens. We load the appropriate transaction data and our smart contract address into Metamask for user to submit the transaction.
+4. The NFT is then assigned/transferred to user's eth account.
+5. Our website updates - by putting a SOLD sticker on the NFT's has been sold
+

@@ -5,16 +5,16 @@ pragma solidity ^0.8.0;
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract Printer is ERC721Enumerable, Ownable {
+contract RabbitsHut is ERC721Enumerable, Ownable {
     using Strings for uint256;
 
     string public baseURI;
     string public baseExtension = ".json";
-    uint256 public cost = 1 ether; //cost to mint one NFT aka how much we are charging
+    uint256 public cost = 0.01 ether;
     uint256 public maxSupply = 10000;
-    uint256 public maxMintAmount = 10; //max number of NFT's per mint
+    uint256 public maxMintAmount = 10;
     bool public paused = false;
-    mapping(address => bool) public whitelisted; //owner or whitelisted can mint for free
+    mapping(address => bool) public whitelisted;
 
     constructor(
         string memory _name,
@@ -22,7 +22,7 @@ contract Printer is ERC721Enumerable, Ownable {
         string memory _initBaseURI
     ) ERC721(_name, _symbol) {
         setBaseURI(_initBaseURI);
-        mint(msg.sender, 20); //when deploying the initial contract the address that does the deployment gets an initial 20 NFT's
+        mint(msg.sender, 10);
     }
 
     // internal
@@ -38,7 +38,6 @@ contract Printer is ERC721Enumerable, Ownable {
         require(_mintAmount <= maxMintAmount);
         require(supply + _mintAmount <= maxSupply);
 
-        //if not owner or whitelisted then the msg.value(what was sent) need to be larger than number of nft * how many being minted
         if (msg.sender != owner()) {
             if (whitelisted[msg.sender] != true) {
                 require(msg.value >= cost * _mintAmount);
@@ -46,7 +45,7 @@ contract Printer is ERC721Enumerable, Ownable {
         }
 
         for (uint256 i = 1; i <= _mintAmount; i++) {
-            _safeMint(_to, supply + i); //https://docs.openzeppelin.com/contracts/2.x/api/token/erc721#ERC721-_safeMint-address-uint256-bytes-
+            _safeMint(_to, supply + i);
         }
     }
 
