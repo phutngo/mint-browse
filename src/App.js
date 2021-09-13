@@ -1,3 +1,9 @@
+import Minter from './Minter'
+
 export default function App() {
-  return <>Hellow NFTs!</>;
+  return <>
+  Hellow NFTs!
+  <Minter/>
+  
+  </>;
 }
