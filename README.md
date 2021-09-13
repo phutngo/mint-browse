@@ -149,3 +149,29 @@ react query and querying the blockchain
 
 
 # Frontend
+## 🗃 NFT Minter Tutorial Starter Files
+
+This project contains the starter files for [Alchemy's NFT Minter tutorial](https://docs.alchemyapi.io/alchemy/tutorials/nft-minter), in which we teach you how to connect your smart contract to your React dApp project by building an NFT Minter using Metamask and Web3.
+
+
+https://docs.alchemy.com/alchemy/tutorials/nft-minter/~/settings/env
+https://composer.alchemyapi.io/
+
+https://docs.alchemy.com/alchemy/tutorials/nft-minter/~/settings/env#step-5-nft-metadata-101
+
+This is good stuff -
+
+## TODO
+
+1. point to our own smart contract
+   1. update this with out own smart contract `window.contract = await new web3.eth.Contract(contractABI, contractAddress)`
+2. deploy this to netlify
+3. Add in viewing and browsing of NFTs in the contract
+4. update the pinata pipeline to handle the 10000 images!!!
+
+"It would be great to have a little web page that you could paste a token ID into and view the token asset and metadata.
+
+This should be pretty simple to wire up using nfte.app, a react component that does some nice presentation if you give it info about an NFT. Since our contract won't be deployed on mainnet, we'll need to provide our own endpoint for the viewer to connect to, so this implies a minty serve command (or similar) that will host an endpoint to supply the data.
+
+We'll also need a simple react app that has a text field for the token ID and updates the NFTE component on changes."
+https://nfte.app/
