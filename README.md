@@ -18,7 +18,7 @@ npx hardhat help
 npx hardhat
 ```
 
-## Installation / Getting Started
+## Installation
 [Hardhat Getting Started](https://hardhat.org/getting-started/)
 
 Hardhat is used through a local installation in your project. This way your environment will be reproducible, and you will avoid future version conflicts.
@@ -45,6 +45,9 @@ npx hardhat
 
 then **install dependencies - hardhat will tell you how**
 
+## Start hardhat network
+TODO: look up which network starting
+`npx hardhat node`
 ## Compile
 Compile .sol files in the contracts folder
 
@@ -113,12 +116,13 @@ npx hardhat run scripts/sample-script.js // this script does a deployment of wha
 ## TODO
 
 ### Module 2 - Smart Contract / Backend
+
 1. (DONE) Make sure [Code 10000 NFT Mint Dapp part1](https://www.youtube.com/watch?v=SD1DTrlJeKM&t=1942s) .sol code is tight and can be deployed on remix
 2. (DONE) Make sure that using remix can deploy on rinkeby
 3. Manually upload images to be on nft.storage or pinata.cloud and be able to have smartcontract NFT uri correctly point to them
 4. Ensure images work and can see on testnets.opensea
    1. Need test images and metadata
-5. Figure out how to programmatically using nft.storage API and node.js to post on nft.storage and get back the CID. Then pass the CID into the smartcontract. HOW? Can do this one by one passing the CID as the data when minting? This is lazy minting good right? https://forum.openzeppelin.com/t/using-ipfs-as-baseuri/8121
+5. Figure out how to programmatically using nft.storage API and node.js to post on nft.storage and get back the CID. Then pass the CID into the smartcontract. HOW? Can do this one by one passing the CID as the data when minting? This is lazy minting good right? [Using IPFS as baseURI](https://forum.openzeppelin.com/t/using-ipfs-as-baseuri/8121)
 6. Premint everything? Then everything is visible on the Smart Contract.Or mint a subset and release in batches? How to ensure that images are uploaded in batches? Can get the CID before upload?
 7. Commented per [Solidity NatSpec](https://docs.soliditylang.org/en/v0.8.3/natspec-format.html#)
 8. 2 or more good design patterns 
@@ -139,3 +143,9 @@ react query and querying the blockchain
 4. The NFT is then assigned/transferred to user's eth account.
 5. Our website updates - by putting a SOLD sticker on the NFT's has been sold
 
+### Individually pin and mint each NFT
+
+[Uploading Files to IPFS from a Web Application - Nader Dabit](https://dev.to/dabit3/uploading-files-to-ipfs-from-a-web-application-50a)
+
+
+# Frontend
