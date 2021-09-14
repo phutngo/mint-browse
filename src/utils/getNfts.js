@@ -19,11 +19,11 @@ export const getNfts = async (contractAddress, contractABI) => {
   const contract = new ethers.Contract(contractAddress, contractABI, provider);
 
   try {
-    const data = await contract.provider;
+    const data = await contract.ownerOf(3);
     console.log("data: ", data);
   } catch (err) {
     console.log("Error: ", err);
   }
 
-  return 
+  return;
 };
