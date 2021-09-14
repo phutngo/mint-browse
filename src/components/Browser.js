@@ -1,9 +1,11 @@
 import React from "react";
+
 import { NFTE } from "@nfte/react";
 import { Box, Typography } from "@material-ui/core";
-import { getTokenMetadata } from "./utils/getTokenMetadata";
 import { useEffect, useState } from "react";
 import { Paper } from "@material-ui/core";
+
+import { getTokenMetadata } from "../utils/getTokenMetadata";
 
 export const Browser = () => {
   const [tokenMetaData, setTokenMetaData] = useState("");

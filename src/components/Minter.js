@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import { connectWallet, getCurrentWalletConnected, mintNFT } from "./utils/interact";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import { Box, Button, Typography } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
+
+import { connectWallet, getCurrentWalletConnected, mintNFT } from "../utils/interact";
 
 const useStyles = makeStyles((theme) => ({
   outerbox: {
