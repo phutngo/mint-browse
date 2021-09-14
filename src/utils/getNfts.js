@@ -27,10 +27,10 @@ export const getNfts = async (contractAddress, contractABI) => {
     data.owner = await contract.owner(); //owner/deployer of smartcontract
     data.symbol = await contract.symbol(); //symbol of smartcontract
     //data.paused = await contract.paused(); //
-    data.totalSupply = await contract.totalSupply(); //how many has been minted
+    //data.totalSupply = await contract.totalSupply(); //how many has been minted
     //data.walletOfOwner = await contract.walletOfOwner(signedInAddress) //returns
-    data.ownerOf = await contract.ownerOf(3); //owner of tokenId
-    data.tokenURI = await contract.tokenURI(3); //the URI for the token#!!
+    data.ownerOf = await contract.ownerOf(1); //owner of tokenId
+    data.tokenURI = await contract.tokenURI(1); //the URI for the token#!!
 
     return data;
   } catch (err) {

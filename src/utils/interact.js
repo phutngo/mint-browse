@@ -1,5 +1,6 @@
 import { pinJSONToIPFS } from "./pinata.js";
 import { contractABI, contractAddress } from "./CONSTANTS";
+import { Typography } from "@material-ui/core";
 
 require("dotenv").config();
 
@@ -133,8 +134,12 @@ export const mintNFT = async (url, name, description) => {
       success: true,
       status: (
         <>
-          <p>✅ Check out your transaction on Etherscan:</p>
-          <a href={`https://rinkeby.etherscan.io/tx/${txHash}`}>{txHash}</a>
+          <Typography variant="body1" color="textPrimary">✅ Check out your transaction on Etherscan:</Typography>
+          <Typography variant='body2'>
+            <a target='_blank' rel='noreferrer' href={`https://rinkeby.etherscan.io/tx/${txHash}`}>
+              {txHash}
+            </a>
+          </Typography>
         </>
       ),
     };

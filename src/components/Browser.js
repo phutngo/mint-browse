@@ -28,7 +28,7 @@ export const Browser = () => {
     }
     getAsync();
   }, []);
-  console.log("NFTS", nfts);
+  console.log("___NFTS___", nfts);
 
   return (
     <>
@@ -37,12 +37,12 @@ export const Browser = () => {
           {tokenMetaData.success ? (
             <>
               <Typography variant='h6'>
-                NFT's minted from: {tokenMetaData.tokenMetaData.name}
+                NFT's minted from contract: {tokenMetaData.tokenMetaData.name}
                 {" ("}
                 {tokenMetaData.tokenMetaData.symbol}
                 {")"}
               </Typography>
-              <Typography variant='body2'> {contractAddress} </Typography>
+              <a target="_blank" rel="noreferrer" href={`https://rinkeby.etherscan.io/address/${contractAddress}`} >{contractAddress}</a>
             </>
           ) : null}
         </Box>

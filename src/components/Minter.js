@@ -19,11 +19,11 @@ const useStyles = makeStyles((theme) => ({
   form: {
     "& > *": {
       margin: theme.spacing(1),
-      width: "55ch",
+      width: "70ch",
     },
   },
   field: {
-    backgroundColor: "",
+    //backgroundColor: "",
   },
   bottombox: {
     width: "100%",
@@ -156,7 +156,7 @@ const Minter = (props) => {
                   Mint NFT
                 </Button>
                 <Box className={classes.bottombox}>
-                  <Typography>{status}</Typography>
+                  {status}
                 </Box>
               </form>
             </Paper>
