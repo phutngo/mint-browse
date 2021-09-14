@@ -1,21 +1,21 @@
 import { ethers } from "ethers";
-require("dotenv").config();
+require('dotenv').config()
 
-const { ETHERSCAN_API, INFURA_PROJECT_ID, INFURA_PROJECT_SECRET } = process.env;
+const { REACT_APP_ETHERSCAN_API, REACT_APP_INFURA_PROJECT_ID } = process.env;
 
 export const getNfts = async (contractAddress, contractABI) => {
   //https://docs.ethers.io/v5/api-keys/
   const network = "rinkeby";
   // Specify your own API keys. Each is optional, and if you omit it the default API key for that service will be used.
   const providerOptions = {
-    etherscan: ETHERSCAN_API,
-    //infura: YOUR_INFURA_PROJECT_ID,
+    etherscan: REACT_APP_ETHERSCAN_API,
+    infura: REACT_APP_INFURA_PROJECT_ID,
     //Or if using a project secret:
-    infura: {
-      projectId: INFURA_PROJECT_ID,
-      projectSecret: INFURA_PROJECT_SECRET,
-    },
-    //alchemy: process.env.REACT_APP_ALCHEMY_KEY,
+    // infura: {
+    //   projectId: REACT_APP_INFURA_PROJECT_ID,
+    //   projectSecret: REACT_APP_INFURA_PROJECT_SECRET,
+    // },
+    //alchemy: REACT_APP_RINKEBY_ALCHEMY_URL,
   };
   const provider = new ethers.getDefaultProvider(network, providerOptions);
   const contract = new ethers.Contract(contractAddress, contractABI, provider);

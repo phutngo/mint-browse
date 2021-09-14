@@ -1,11 +1,11 @@
-require("dotenv").config();
+require('dotenv').config()
 
-const { RINKEBY_ALCHEMY_URL } = process.env;
+const { REACT_APP_RINKEBY_ALCHEMY_URL } = process.env;
 
 const axios = require("axios");
 
 export const getTokenMetadata = async (contractAddress) => {
-  const url = RINKEBY_ALCHEMY_URL;
+  const url = REACT_APP_RINKEBY_ALCHEMY_URL;
   const JSONBody = {
     jsonrpc: "2.0",
     method: "alchemy_getTokenMetadata",

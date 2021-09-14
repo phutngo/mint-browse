@@ -2,7 +2,7 @@
 require("dotenv").config();
 require("@nomiclabs/hardhat-ethers");
 
-const { MY_PRIVATE_KEY, ROPSTEN_ALCHEMY_URL, RINKEBY_ALCHEMY_URL } = process.env;
+const { MY_PRIVATE_KEY, REACT_APP_ROPSTEN_ALCHEMY_URL, REACT_APP_RINKEBY_ALCHEMY_URL } = process.env;
 
 // This is a sample Hardhat task. To learn how to create your own go to
 // https://hardhat.org/guides/create-task.html
@@ -31,11 +31,11 @@ module.exports = {
       url: "http://127.0.0.1:8545/",
     },
     rinkeby: {
-      url: RINKEBY_ALCHEMY_URL,
+      url: REACT_APP_RINKEBY_ALCHEMY_URL,
       accounts: [`0x${MY_PRIVATE_KEY}`],
     },
     ropsten: {
-      url: ROPSTEN_ALCHEMY_URL,
+      url: REACT_APP_ROPSTEN_ALCHEMY_URL,
       accounts: [`0x${MY_PRIVATE_KEY}`],
     },
   },

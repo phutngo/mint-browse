@@ -1,6 +1,6 @@
-require("dotenv").config();
+require('dotenv').config()
 
-const { PINATA_KEY, PINATA_SECRET } = process.env;
+const { REACT_APP_PINATA_KEY, REACT_APP_PINATA_SECRET } = process.env;
 
 const axios = require("axios");
 
@@ -10,8 +10,8 @@ export const pinJSONToIPFS = async (JSONBody) => {
   return axios
     .post(url, JSONBody, {
       headers: {
-        pinata_api_key: PINATA_KEY,
-        pinata_secret_api_key: PINATA_SECRET,
+        pinata_api_key: REACT_APP_PINATA_KEY,
+        pinata_secret_api_key: REACT_APP_PINATA_SECRET,
       },
     })
     .then(function (response) {

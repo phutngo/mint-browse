@@ -1,15 +1,12 @@
 import { pinJSONToIPFS } from "./pinata.js";
 import { contractABI, contractAddress } from "./CONSTANTS";
 
-//TODO dotenv not working because of some stupid execution path, directly putting in the url in createAlchemyWeb3 works
 require("dotenv").config();
 
-const alchemyUrl = process.env.RINKEBY_ALCHEMY_URL;
-
-console.log("DOTNV",alchemyUrl)
+const { REACT_APP_RINKEBY_ALCHEMY_URL } = process.env;
 
 const { createAlchemyWeb3 } = require("@alch/alchemy-web3");
-const web3 = createAlchemyWeb3("https://eth-rinkeby.alchemyapi.io/v2/-MIbNLtGLrLz9_sLvNx4ddz_tr_xiMoo");
+const web3 = createAlchemyWeb3(REACT_APP_RINKEBY_ALCHEMY_URL);
 
 //check if an address is already connected to our dApp
 export const getCurrentWalletConnected = async () => {
