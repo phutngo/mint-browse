@@ -20,15 +20,17 @@ export const Browser = () => {
     <>
       <Paper>
         <Box style={{ display: "flex", justifyContent: "center" }} m={1}>
-          <Typography variant='h6'>
-            NFT's minted from: {tokenMetaData.tokenMetaData.name}
-            {" ("}
-            {tokenMetaData.tokenMetaData.symbol}
-            {")"}
-          </Typography>
+          {tokenMetaData.success ? (
+            <Typography variant='h6'>
+              NFT's minted from: {tokenMetaData.tokenMetaData.name}
+              {" ("}
+              {tokenMetaData.tokenMetaData.symbol}
+              {")"}
+            </Typography>
+          ) : null}
         </Box>
         <Box style={{ display: "flex", justifyContent: "center" }} m={1}>
-          <NFTE contract='0xb932a70a57673d89f4acffbe830e8ed7f75fb9e0' tokenId='18552' />
+          <NFTE contract='0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D' tokenId='140' />
         </Box>
       </Paper>
     </>
