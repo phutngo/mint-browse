@@ -19,14 +19,14 @@ export const getNfts = async (contractAddress, contractABI) => {
   const contract = new ethers.Contract(contractAddress, contractABI, provider);
 
   //Todo update signed in address to be  to display tokens of signed in user
-  const signedInAddress = "0x9a58d7376e21a561904D68FAC239Eaaf2915437A"
+  //const signedInAddress = "0x9a58d7376e21a561904D68FAC239Eaaf2915437A"
   try {
     let data ={};
     data.owner = await contract.owner(); //owner/deployer of smartcontract
     data.symbol = await contract.symbol() //symbol of smartcontract
-    data.paused = await contract.paused(); //
+    //data.paused = await contract.paused(); //
     data.totalSupply = await contract.totalSupply()//how many has been minted
-    data.walletOfOwner = await contract.walletOfOwner(signedInAddress) //returns 
+    //data.walletOfOwner = await contract.walletOfOwner(signedInAddress) //returns 
     data.ownerOf = await contract.ownerOf(3); //owner of tokenId
     data.tokenURI = await contract.tokenURI(3) //the URI for the token#!!
  

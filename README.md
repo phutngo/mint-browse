@@ -113,7 +113,25 @@ npx hardhat node //starts up JSON-RPC Hardhat Network
 npx hardhat run scripts/sample-script.js // this script does a deployment of whatever .sol files is specified inside it
 ```
 
-## TODO
+# Using Hardhat to deploy an NFT smart contract
+https://docs.alchemy.com/alchemy/tutorials/how-to-create-an-nft
+
+deploy the smart contract to ropsten
+```
+npx hardhat run scripts/deploy.js --network ropsten
+```
+
+
+
+
+
+
+
+
+
+
+
+# TODO
 
 ### Module 2 - Smart Contract / Backend
 
@@ -183,14 +201,42 @@ https://docs.alchemy.com/alchemy/documentation/alchemy-web3/enhanced-web3-api - 
 https://dev.to/dabit3/the-complete-guide-to-full-stack-ethereum-development-3j13
 
 
-# Remix Depployment Process and Update to FrontEnd
-1. Use Remix to deploy Smart Contract to ropsten
-2. Copy the ABI from ContractName_metadata.json within artifacts folder and paste it into frontend contract-abi.json
+
+
+# 0 - Generate and Pin Images and Metadata
+1. Using a separate program - this is non part of the final project and will be done later by me
+
+# 1 - Deploy Smart Contract
+## Deploy with Hardhat
+
+TODO - Before deploying with hardhat we would want to compile and run tests first. Would need to:
+1. Compile
+2. Deploy to localhh
+3. Run Tests
+4. Once tests are good then deploy to ropsten
+
+Deploy the smart contract to ropsten using hardhat
+```
+npx hardhat run scripts/deploy.js --network ropsten
+```
+Can then use etherscan to interact with it 
+
+## Deploy with Remix
+Aternatively can use Remix to deploy to to vm with quick ui elements for manual testing.
+Then deploy to ropsten there.
+
+# 2 - Fronend Configurations
+
+1. (If Remix) Copy the ABI from ContractName_metadata.json within artifacts folder and paste it into frontend contract-abi.json
    1. note abi is the array property of "abi": []
+2. (If Hardhat deployed) Copy the ABI from artifacts/contracts/Contractname.json
 3. Copy the deployed smart contract address and paste it into CONSTANTS.js
+
+TODO - automate the hooking up of the frontend config to deployed contract
 
 Now our frontend is hooked up to that smartcontract and can start to read and write to the smart contract.
 
-4. Use the ABI to see all the available functions
-read functions
-and write functions (require signer)
+
+# Customer Minting Process
+
+

@@ -1,4 +1,8 @@
-require("@nomiclabs/hardhat-waffle");
+//require("@nomiclabs/hardhat-waffle");
+require("dotenv").config();
+require("@nomiclabs/hardhat-ethers");
+
+const { REACT_APP_ALCHEMY_KEY, MY_PRIVATE_KEY } = process.env;
 
 // This is a sample Hardhat task. To learn how to create your own go to
 // https://hardhat.org/guides/create-task.html
@@ -17,17 +21,16 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
  * @type import('hardhat/config').HardhatUserConfig
  */
 module.exports = {
-  solidity: "0.8.4",
-  defaultNetwork: "localhh",
+  solidity: "0.7.3",
+  defaultNetwork: "ropsten",
   networks: {
-    hardhat: {
-    },
+    hardhat: {},
     localhh: {
       url: "http://127.0.0.1:8545/",
     },
-    rinkeby: {
-      url: "https://eth-mainnet.alchemyapi.io/v2/123abc123abc123abc123abc123abcde",
-      accounts: [],
+    ropsten: {
+      url: REACT_APP_ALCHEMY_KEY,
+      accounts: [`0x${MY_PRIVATE_KEY}`],
     },
   },
 };
