@@ -91,7 +91,7 @@ const Minter = (props) => {
         <Grid container direction='column' justifyContent='flex-start' alignItems='center' spacing='3'>
           <Grid item xs>
             <Paper>
-              <Typography variant='h1'> NFT Minter</Typography>
+              <Typography variant='h3'>NFT Minter and Browser</Typography>
             </Paper>
           </Grid>
 
