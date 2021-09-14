@@ -42,7 +42,7 @@ const Minter = (props) => {
           setStatus("👆🏽 Write a message in the text-field above.");
         } else {
           setWallet("");
-          setStatus("🦊 Connect to Metamask using the top right button.");
+          setStatus("🦊 Connect to Metamask using the button on top of page.");
         }
       });
     } else {
@@ -100,7 +100,7 @@ const Minter = (props) => {
             <form className={classes.form} noValidate autoComplete='on'>
               <TextField
                 id='asset-link'
-                label='Link to Asset'
+                label='Link to Asset / Image'
                 variant='outlined'
                 type='text'
                 placeholder='e.g. https://gateway.pinata.cloud/ipfs/<hash>'
@@ -109,19 +109,19 @@ const Minter = (props) => {
 
               <TextField
                 id='token-name'
-                label='Name'
+                label='Name of NFT'
                 variant='outlined'
                 type='text'
-                placeholder='e.g. My first NFT!'
+                placeholder='e.g. My best NFT!'
                 onChange={(event) => setName(event.target.value)}
               />
 
               <TextField
                 id='token-description'
-                label='Description'
+                label='Description of NFT'
                 variant='outlined'
                 type='text'
-                placeholder='e.g. Even cooler than cryptokitties ;)'
+                placeholder='e.g. More 🟩shapes🟣 than BAYC 😊'
                 onChange={(event) => setDescription(event.target.value)}
               />
 
