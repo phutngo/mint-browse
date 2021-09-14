@@ -1,9 +1,11 @@
-import Minter from './Minter'
+import CssBaseline from "@material-ui/core/CssBaseline";
+import Minter from "./Minter";
 
 export default function App() {
-  return <>
-  
-  <Minter/>
-  
-  </>;
+  return (
+    <>
+      <CssBaseline />
+      <Minter />
+    </>
+  );
 }

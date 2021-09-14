@@ -3,10 +3,13 @@ import { connectWallet, getCurrentWalletConnected, mintNFT } from "./utils/inter
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
-import { Button, Typography } from "@material-ui/core";
+import { Box, Button, Typography } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
 
 const useStyles = makeStyles((theme) => ({
+  outerbox: {
+    overflow: "hidden",
+  },
   paper: {
     padding: theme.spacing(2),
     textAlign: "center",
@@ -15,11 +18,14 @@ const useStyles = makeStyles((theme) => ({
   form: {
     "& > *": {
       margin: theme.spacing(1),
-      width: "60ch",
+      width: "55ch",
     },
   },
   field: {
     backgroundColor: "",
+  },
+  bottombox: {
+    width: "100%",
   },
 }));
 
@@ -48,8 +54,7 @@ const Minter = (props) => {
     } else {
       setStatus(
         <p>
-          {" "}
-          🦊{" "}
+          🦊
           <a target='_blank' rel='noreferrer' href={`https://metamask.io/download.html`}>
             You must install Metamask, a virtual Ethereum wallet, in your browser.
           </a>
@@ -82,58 +87,69 @@ const Minter = (props) => {
 
   return (
     <>
-      <Grid container direction='column' justifyContent='flex-start' alignItems='center' spacing='3'>
-        <Grid item xs>
-          <Paper className={classes.paper}>
-            <Button variant='outlined' id='walletButton' color='primary' onClick={connectWalletPressed}>
-              {walletAddress.length > 0 ? (
-                "Connected to MetaMask Account: " + String(walletAddress)
-              ) : (
-                <span>Connect To Your Meta Mask Account</span>
-              )}
-            </Button>
-          </Paper>
-        </Grid>
-
-        <Grid item xs>
-          <Paper className={classes.paper}>
-            <form className={classes.form} noValidate autoComplete='on'>
-              <TextField
-                id='asset-link'
-                label='Link to Asset / Image'
-                variant='outlined'
-                type='text'
-                placeholder='e.g. https://gateway.pinata.cloud/ipfs/<hash>'
-                onChange={(event) => setURL(event.target.value)}
-              />
-
-              <TextField
-                id='token-name'
-                label='Name of NFT'
-                variant='outlined'
-                type='text'
-                placeholder='e.g. My best NFT!'
-                onChange={(event) => setName(event.target.value)}
-              />
-
-              <TextField
-                id='token-description'
-                label='Description of NFT'
-                variant='outlined'
-                type='text'
-                placeholder='e.g. More 🟩shapes🟣 than BAYC 😊'
-                onChange={(event) => setDescription(event.target.value)}
-              />
-
-              <Button variant='contained' color='primary' id='mintButton' onClick={onMintPressed}>
-                Mint NFT
+      <Box className={classes.outerbox}>
+        <Grid container direction='column' justifyContent='flex-start' alignItems='center' spacing='3'>
+          <Grid item xs>
+            <Paper className={classes.paper}>
+              <Button variant='outlined' id='walletButton' color='primary' onClick={connectWalletPressed}>
+                {walletAddress.length > 0 ? (
+                  "Connected to MetaMask Account: " + String(walletAddress)
+                ) : (
+                  <span>Connect To Your Meta Mask Account on Ropsten</span>
+                )}
               </Button>
+            </Paper>
+          </Grid>
 
-              <Typography>{status}</Typography>
-            </form>
-          </Paper>
+          <Grid item xs>
+            <Paper className={classes.paper}>
+              <form className={classes.form} autoComplete='on'>
+                <Box>
+                  <TextField
+                    fullWidth
+                    id='asset-link'
+                    label='Link to Asset / Image'
+                    variant='outlined'
+                    type='text'
+                    placeholder='e.g. https://gateway.pinata.cloud/ipfs/<hash>'
+                    onChange={(event) => setURL(event.target.value)}
+                  />
+                </Box>
+                <Box>
+                  <TextField
+                    fullWidth
+                    id='token-name'
+                    label='Name of NFT'
+                    variant='outlined'
+                    type='text'
+                    placeholder='e.g. My best NFT!'
+                    onChange={(event) => setName(event.target.value)}
+                  />{" "}
+                </Box>
+
+                <Box>
+                  <TextField
+                    fullWidth
+                    id='token-description'
+                    label='Description of NFT'
+                    variant='outlined'
+                    type='text'
+                    placeholder='e.g. More 🟩shapes🟣 than BAYC 😊'
+                    onChange={(event) => setDescription(event.target.value)}
+                  />
+                </Box>
+
+                <Button variant='contained' color='primary' id='mintButton' onClick={onMintPressed}>
+                  Mint NFT
+                </Button>
+                <Box className={classes.bottombox}>
+                  <Typography>{status}</Typography>
+                </Box>
+              </form>
+            </Paper>
+          </Grid>
         </Grid>
-      </Grid>
+      </Box>
     </>
   );
 };
