@@ -89,7 +89,7 @@ const Minter = (props) => {
   return (
     <>
       <Box className={classes.outerbox} m={1}>
-        <Grid container direction='column' justifyContent='flex-start' alignItems='center' spacing='1'>
+        <Grid container direction='column' justifyContent='flex-start' alignItems='center' spacing={1}>
           <Grid item xs>
             <Paper>
               <Typography variant='h3'>NFT Minter and Browser</Typography>
