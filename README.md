@@ -181,3 +181,12 @@ https://docs.alchemy.com/alchemy/tutorials/transfers-tutorial
 https://docs.alchemy.com/alchemy/documentation/alchemy-web3/enhanced-web3-api - use this to display tokens
 
 https://dev.to/dabit3/the-complete-guide-to-full-stack-ethereum-development-3j13
+
+
+# Remix Depployment Process and Update to FrontEnd
+1. Use Remix to deploy Smart Contract to ropsten
+2. Copy the ABI from ContractName_metadata.json within artifacts folder and paste it into frontend contract-abi.json
+   1. note abi is the array property of "abi": []
+3. Copy the deployed smart contract address and paste it into CONSTANTS.js
+
+Now our frontend is hooked up to that smartcontract and can start to read and write to the smart contract.
