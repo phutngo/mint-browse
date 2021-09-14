@@ -19,7 +19,7 @@ export const getCurrentWalletConnected = async () => {
       if (addressArray.length > 0) {
         return {
           address: addressArray[0],
-          status: "👆🏽 Write a message in the text-field above.",
+          status: "--",
         };
       } else {
         return {
@@ -31,7 +31,7 @@ export const getCurrentWalletConnected = async () => {
       return {
         address: "",
         status: "😥 " + err.message,
-        chainId: "Not Connected",
+        
       };
     }
   } else {
@@ -62,7 +62,7 @@ export const connectWallet = async () => {
       });
 
       const obj = {
-        status: "👆🏽 Write a message in the text-field above.",
+        status: "--",
         address: addressArray[0], //simple only first address instead of handling user changing account
       };
       return obj;
@@ -100,7 +100,7 @@ export const mintNFT = async (url, name, description) => {
   }
 
   //make metadata
-  const metadata = {}
+  const metadata = {};
   metadata.name = name;
   metadata.image = url;
   metadata.description = description;

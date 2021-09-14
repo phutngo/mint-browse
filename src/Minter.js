@@ -45,7 +45,7 @@ const Minter = (props) => {
       window.ethereum.on("accountsChanged", (accounts) => {
         if (accounts.length > 0) {
           setWallet(accounts[0]);
-          setStatus("👆🏽 Write a message in the text-field above.");
+          setStatus("--");
         } else {
           setWallet("");
           setStatus("🦊 Connect to Metamask using the button on top of page.");
@@ -89,6 +89,12 @@ const Minter = (props) => {
     <>
       <Box className={classes.outerbox}>
         <Grid container direction='column' justifyContent='flex-start' alignItems='center' spacing='3'>
+          <Grid item xs>
+            <Paper>
+              <Typography variant='h1'> NFT Minter</Typography>
+            </Paper>
+          </Grid>
+
           <Grid item xs>
             <Paper className={classes.paper}>
               <Button variant='outlined' id='walletButton' color='primary' onClick={connectWalletPressed}>
