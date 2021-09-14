@@ -179,3 +179,5 @@ https://nfte.app/
 https://docs.alchemy.com/alchemy/tutorials/transfers-tutorial
 
 https://docs.alchemy.com/alchemy/documentation/alchemy-web3/enhanced-web3-api - use this to display tokens
+
+https://dev.to/dabit3/the-complete-guide-to-full-stack-ethereum-development-3j13
