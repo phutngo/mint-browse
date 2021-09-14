@@ -102,7 +102,7 @@ const Minter = (props) => {
                 {walletAddress.length > 0 ? (
                   "Connected to MetaMask Account: " + String(walletAddress)
                 ) : (
-                  <span>Connect To Your Meta Mask Account on Ropsten</span>
+                  <span>Connect To Your Meta Mask Account on Rinkeby</span>
                 )}
               </Button>
             </Paper>

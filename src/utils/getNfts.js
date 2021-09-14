@@ -1,17 +1,19 @@
 import { ethers } from "ethers";
 require("dotenv").config();
 
+const { ETHERSCAN_API, INFURA_PROJECT_ID, INFURA_PROJECT_SECRET } = process.env;
+
 export const getNfts = async (contractAddress, contractABI) => {
   //https://docs.ethers.io/v5/api-keys/
-  const network = "ropsten";
+  const network = "rinkeby";
   // Specify your own API keys. Each is optional, and if you omit it the default API key for that service will be used.
   const providerOptions = {
-    etherscan: process.env.ETHERSCAN_API,
+    etherscan: ETHERSCAN_API,
     //infura: YOUR_INFURA_PROJECT_ID,
     //Or if using a project secret:
     infura: {
-      projectId: process.env.INFURA_PROJECT_ID,
-      projectSecret: process.env.INFURA_PROJECT_SECRET,
+      projectId: INFURA_PROJECT_ID,
+      projectSecret: INFURA_PROJECT_SECRET,
     },
     //alchemy: process.env.REACT_APP_ALCHEMY_KEY,
   };
@@ -21,15 +23,15 @@ export const getNfts = async (contractAddress, contractABI) => {
   //Todo update signed in address to be  to display tokens of signed in user
   //const signedInAddress = "0x9a58d7376e21a561904D68FAC239Eaaf2915437A"
   try {
-    let data ={};
+    let data = {};
     data.owner = await contract.owner(); //owner/deployer of smartcontract
-    data.symbol = await contract.symbol() //symbol of smartcontract
+    data.symbol = await contract.symbol(); //symbol of smartcontract
     //data.paused = await contract.paused(); //
-    data.totalSupply = await contract.totalSupply()//how many has been minted
-    //data.walletOfOwner = await contract.walletOfOwner(signedInAddress) //returns 
+    data.totalSupply = await contract.totalSupply(); //how many has been minted
+    //data.walletOfOwner = await contract.walletOfOwner(signedInAddress) //returns
     data.ownerOf = await contract.ownerOf(3); //owner of tokenId
-    data.tokenURI = await contract.tokenURI(3) //the URI for the token#!!
- 
+    data.tokenURI = await contract.tokenURI(3); //the URI for the token#!!
+
     return data;
   } catch (err) {
     //console.log("Error: ", err);
