@@ -26,6 +26,7 @@ const useStyles = makeStyles((theme) => ({
   },
   bottombox: {
     width: "100%",
+    
   },
 }));
 
@@ -87,8 +88,8 @@ const Minter = (props) => {
 
   return (
     <>
-      <Box className={classes.outerbox}>
-        <Grid container direction='column' justifyContent='flex-start' alignItems='center' spacing='3'>
+      <Box className={classes.outerbox} m={1}>
+        <Grid container direction='column' justifyContent='flex-start' alignItems='center' spacing='1'>
           <Grid item xs>
             <Paper>
               <Typography variant='h3'>NFT Minter and Browser</Typography>
@@ -148,7 +149,7 @@ const Minter = (props) => {
                 <Button variant='contained' color='primary' id='mintButton' onClick={onMintPressed}>
                   Mint NFT
                 </Button>
-                <Box className={classes.bottombox}>
+                <Box className={classes.bottombox} >
                   <Typography>{status}</Typography>
                 </Box>
               </form>
