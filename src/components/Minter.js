@@ -27,7 +27,6 @@ const useStyles = makeStyles((theme) => ({
   },
   bottombox: {
     width: "100%",
-    
   },
 }));
 
@@ -147,10 +146,16 @@ const Minter = (props) => {
                   />
                 </Box>
 
-                <Button variant='contained' color='primary' id='mintButton' onClick={onMintPressed}>
+                <Button
+                  disabled={!(walletAddress.length > 0)}
+                  variant='contained'
+                  color='primary'
+                  id='mintButton'
+                  onClick={onMintPressed}
+                >
                   Mint NFT
                 </Button>
-                <Box className={classes.bottombox} >
+                <Box className={classes.bottombox}>
                   <Typography>{status}</Typography>
                 </Box>
               </form>

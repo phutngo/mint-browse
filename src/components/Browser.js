@@ -3,8 +3,8 @@ import React from "react";
 import { Box, Typography } from "@material-ui/core";
 import { useEffect, useState } from "react";
 import { Paper } from "@material-ui/core";
-import { contractAddress } from "../utils/CONSTANTS";
 
+import { contractAddress } from "../utils/CONSTANTS";
 import { getTokenMetadata } from "../utils/getTokenMetadata";
 
 export const Browser = () => {
