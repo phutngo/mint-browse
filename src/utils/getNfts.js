@@ -13,17 +13,17 @@ export const getNfts = async (contractAddress, contractABI) => {
       projectId: process.env.INFURA_PROJECT_ID,
       projectSecret: process.env.INFURA_PROJECT_SECRET,
     },
-    alchemy: process.env.REACT_APP_ALCHEMY_KEY,
+    //alchemy: process.env.REACT_APP_ALCHEMY_KEY,
   };
   const provider = new ethers.getDefaultProvider(network, providerOptions);
   const contract = new ethers.Contract(contractAddress, contractABI, provider);
 
   try {
     const data = await contract.ownerOf(3);
-    console.log("data: ", data);
+    //console.log("data: ", data);
+    return data;
   } catch (err) {
-    console.log("Error: ", err);
+    //console.log("Error: ", err);
+    return err;
   }
-
-  return;
 };
