@@ -31,7 +31,6 @@ export const getCurrentWalletConnected = async () => {
       return {
         address: "",
         status: "😥 " + err.message,
-        
       };
     }
   } else {
@@ -133,7 +132,12 @@ export const mintNFT = async (url, name, description) => {
     });
     return {
       success: true,
-      status: "✅ Check out your transaction on Etherscan: https://ropsten.etherscan.io/tx/" + txHash,
+      status: (
+        <>
+          <p>✅ Check out your transaction on Etherscan:</p>
+          <a href={`https://ropsten.etherscan.io/tx/${txHash}`}>{txHash}</a>
+        </>
+      ),
     };
   } catch (error) {
     return {
