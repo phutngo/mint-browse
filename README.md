@@ -162,7 +162,7 @@ https://docs.alchemy.com/alchemy/tutorials/nft-minter/~/settings/env#step-5-nft-
 This is good stuff -
 
 ## TODO
-
+0. Change the endpoint for [NFTE](https://nfte.app/docs) to ropsten or just build my own
 1. point to our own smart contract
    1. update this with out own smart contract `window.contract = await new web3.eth.Contract(contractABI, contractAddress)`
 2. deploy this to netlify
