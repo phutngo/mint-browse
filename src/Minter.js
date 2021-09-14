@@ -3,16 +3,23 @@ import { connectWallet, getCurrentWalletConnected, mintNFT } from "./utils/inter
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
-import { Button } from "@material-ui/core";
+import { Button, Typography } from "@material-ui/core";
+import TextField from "@material-ui/core/TextField";
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
   paper: {
     padding: theme.spacing(2),
     textAlign: "center",
     color: theme.palette.text.secondary,
+  },
+  form: {
+    "& > *": {
+      margin: theme.spacing(1),
+      width: "60ch",
+    },
+  },
+  field: {
+    backgroundColor: "",
   },
 }));
 
@@ -78,7 +85,7 @@ const Minter = (props) => {
       <Grid container direction='column' justifyContent='flex-start' alignItems='center' spacing='3'>
         <Grid item xs>
           <Paper className={classes.paper}>
-            <Button variant='outlined' id='walletButton' onClick={connectWalletPressed}>
+            <Button variant='outlined' id='walletButton' color='primary' onClick={connectWalletPressed}>
               {walletAddress.length > 0 ? (
                 "Connected to MetaMask Account: " + String(walletAddress)
               ) : (
@@ -87,33 +94,43 @@ const Minter = (props) => {
             </Button>
           </Paper>
         </Grid>
+
         <Grid item xs>
           <Paper className={classes.paper}>
-            <form>
-              <h2>🖼 Link to asset: </h2>
-              <input
+            <form className={classes.form} noValidate autoComplete='on'>
+              <TextField
+                id='asset-link'
+                label='Link to Asset'
+                variant='outlined'
                 type='text'
                 placeholder='e.g. https://gateway.pinata.cloud/ipfs/<hash>'
                 onChange={(event) => setURL(event.target.value)}
               />
-              <h2>🤔 Name: </h2>
-              <input type='text' placeholder='e.g. My first NFT!' onChange={(event) => setName(event.target.value)} />
-              <h2>✍️ Description: </h2>
-              <input
+
+              <TextField
+                id='token-name'
+                label='Name'
+                variant='outlined'
+                type='text'
+                placeholder='e.g. My first NFT!'
+                onChange={(event) => setName(event.target.value)}
+              />
+
+              <TextField
+                id='token-description'
+                label='Description'
+                variant='outlined'
                 type='text'
                 placeholder='e.g. Even cooler than cryptokitties ;)'
                 onChange={(event) => setDescription(event.target.value)}
               />
+
+              <Button variant='contained' color='primary' id='mintButton' onClick={onMintPressed}>
+                Mint NFT
+              </Button>
+
+              <Typography>{status}</Typography>
             </form>
-          </Paper>
-        </Grid>
-        <Grid item xs>
-          <Paper className={classes.paper}>
-            {" "}
-            <button id='mintButton' onClick={onMintPressed}>
-              Mint NFT
-            </button>
-            <p id='status'>{status}</p>
           </Paper>
         </Grid>
       </Grid>
