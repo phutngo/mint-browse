@@ -1,7 +1,24 @@
 import { useEffect, useState } from "react";
-import { connectWallet, getCurrentWalletConnected, mintNFT  } from "./utils/interact";
+import { connectWallet, getCurrentWalletConnected, mintNFT } from "./utils/interact";
+import { makeStyles } from "@material-ui/core/styles";
+import Paper from "@material-ui/core/Paper";
+import Grid from "@material-ui/core/Grid";
+import { Button } from "@material-ui/core";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  paper: {
+    padding: theme.spacing(2),
+    textAlign: "center",
+    color: theme.palette.text.secondary,
+  },
+}));
 
 const Minter = (props) => {
+  const classes = useStyles();
+
   //State variables
   const [walletAddress, setWallet] = useState("");
   const [status, setStatus] = useState("");
@@ -54,42 +71,53 @@ const Minter = (props) => {
   const onMintPressed = async () => {
     const { status } = await mintNFT(url, name, description);
     setStatus(status);
-};
+  };
 
   return (
-    <div className='Minter'>
-      <button id='walletButton' onClick={connectWalletPressed}>
-        {walletAddress.length > 0 ? (
-          "Connected: " + String(walletAddress).substring(0, 6) + "..." + String(walletAddress).substring(38)
-        ) : (
-          <span>Connect Wallet</span>
-        )}
-      </button>
-
-      <br></br>
-      <h1 id='title'>🧙‍♂️ Alchemy NFT Minter</h1>
-      <p>Simply add your asset's link, name, and description, then press "Mint."</p>
-      <form>
-        <h2>🖼 Link to asset: </h2>
-        <input
-          type='text'
-          placeholder='e.g. https://gateway.pinata.cloud/ipfs/<hash>'
-          onChange={(event) => setURL(event.target.value)}
-        />
-        <h2>🤔 Name: </h2>
-        <input type='text' placeholder='e.g. My first NFT!' onChange={(event) => setName(event.target.value)} />
-        <h2>✍️ Description: </h2>
-        <input
-          type='text'
-          placeholder='e.g. Even cooler than cryptokitties ;)'
-          onChange={(event) => setDescription(event.target.value)}
-        />
-      </form>
-      <button id='mintButton' onClick={onMintPressed}>
-        Mint NFT
-      </button>
-      <p id='status'>{status}</p>
-    </div>
+    <>
+      <Grid container direction='column' justifyContent='flex-start' alignItems='center' spacing='3'>
+        <Grid item xs>
+          <Paper className={classes.paper}>
+            <Button variant='outlined' id='walletButton' onClick={connectWalletPressed}>
+              {walletAddress.length > 0 ? (
+                "Connected to MetaMask Account: " + String(walletAddress)
+              ) : (
+                <span>Connect To Your Meta Mask Account</span>
+              )}
+            </Button>
+          </Paper>
+        </Grid>
+        <Grid item xs>
+          <Paper className={classes.paper}>
+            <form>
+              <h2>🖼 Link to asset: </h2>
+              <input
+                type='text'
+                placeholder='e.g. https://gateway.pinata.cloud/ipfs/<hash>'
+                onChange={(event) => setURL(event.target.value)}
+              />
+              <h2>🤔 Name: </h2>
+              <input type='text' placeholder='e.g. My first NFT!' onChange={(event) => setName(event.target.value)} />
+              <h2>✍️ Description: </h2>
+              <input
+                type='text'
+                placeholder='e.g. Even cooler than cryptokitties ;)'
+                onChange={(event) => setDescription(event.target.value)}
+              />
+            </form>
+          </Paper>
+        </Grid>
+        <Grid item xs>
+          <Paper className={classes.paper}>
+            {" "}
+            <button id='mintButton' onClick={onMintPressed}>
+              Mint NFT
+            </button>
+            <p id='status'>{status}</p>
+          </Paper>
+        </Grid>
+      </Grid>
+    </>
   );
 };
 
