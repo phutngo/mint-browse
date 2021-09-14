@@ -190,3 +190,7 @@ https://dev.to/dabit3/the-complete-guide-to-full-stack-ethereum-development-3j13
 3. Copy the deployed smart contract address and paste it into CONSTANTS.js
 
 Now our frontend is hooked up to that smartcontract and can start to read and write to the smart contract.
+
+4. Use the ABI to see all the available functions
+read functions
+and write functions (require signer)
