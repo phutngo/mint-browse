@@ -175,3 +175,7 @@ This should be pretty simple to wire up using nfte.app, a react component that d
 
 We'll also need a simple react app that has a text field for the token ID and updates the NFTE component on changes."
 https://nfte.app/
+
+https://docs.alchemy.com/alchemy/tutorials/transfers-tutorial
+
+https://docs.alchemy.com/alchemy/documentation/alchemy-web3/enhanced-web3-api - use this to display tokens
