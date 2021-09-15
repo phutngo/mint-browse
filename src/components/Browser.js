@@ -1,12 +1,12 @@
 import React from "react";
 
-import { Box, Typography } from "@material-ui/core";
+import { Box, Grid, Typography } from "@material-ui/core";
 import { useEffect, useState } from "react";
 import { Paper } from "@material-ui/core";
 
 import { contractAddress, contractABI } from "../utils/CONSTANTS";
 import { getTokenMetadata } from "../utils/getTokenMetadata";
-import { getNfts } from "../utils/getNfts";
+import { getAllTokens } from "../utils/getAllTokens";
 
 export const Browser = () => {
   //getTokenMetadata- Contract Name and Symbol
@@ -19,16 +19,16 @@ export const Browser = () => {
     getAsync();
   }, []);
 
-  //getNfts
-  const [nfts, setNfts] = useState("");
+  //getAllTokens
+  const [allTokens, SetAllTokens] = useState([]);
   useEffect(() => {
     async function getAsync() {
-      const _nfts = await getNfts(contractAddress, contractABI);
-      setNfts(_nfts);
+      const _allTokens = await getAllTokens(contractAddress, contractABI);
+      SetAllTokens(Array.from(_allTokens));
     }
     getAsync();
   }, []);
-  console.log("___NFTS___", nfts);
+  //console.log("ALL TOKENS of ADDRESS", allTokens);
 
   return (
     <>
@@ -42,9 +42,24 @@ export const Browser = () => {
                 {tokenMetaData.tokenMetaData.symbol}
                 {")"}
               </Typography>
-              <a target="_blank" rel="noreferrer" href={`https://rinkeby.etherscan.io/address/${contractAddress}`} >{contractAddress}</a>
+              <a target='_blank' rel='noreferrer' href={`https://rinkeby.etherscan.io/address/${contractAddress}`}>
+                {contractAddress}
+              </a>
             </>
           ) : null}
+        </Box>
+        <Box>
+          <Grid container direction='row' justifyContent='flex-start' alignItems='flex-start'>
+            {allTokens.map((token, index) => {
+              return (
+                <>
+                  <Typography key={token.tokenId}>
+                    {token.tokenId} {token.tokenURI}{" "}
+                  </Typography>
+                </>
+              );
+            })}
+          </Grid>
         </Box>
       </Paper>
     </>
