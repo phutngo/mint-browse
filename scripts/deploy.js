@@ -1,6 +1,6 @@
 async function main() {
   // Grab the contract factory
-  const Contract = await ethers.getContractFactory("MyPhun");
+  const Contract = await ethers.getContractFactory("PhunMinter");
 
   // Start deployment, returning a promise that resolves to a contract object
   const myContract = await Contract.deploy(); // Instance of the contract
