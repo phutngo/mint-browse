@@ -4,6 +4,7 @@ import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import { Box, Button, Typography } from "@material-ui/core";
 import TextField from "@material-ui/core/TextField";
+import Tooltip from "@material-ui/core/Tooltip";
 
 import { connectWallet, getCurrentWalletConnected, mintNFT } from "../utils/interact";
 
@@ -111,17 +112,30 @@ const Minter = (props) => {
           <Grid item xs>
             <Paper className={classes.paper}>
               <form className={classes.form} autoComplete='on'>
-                <Box>
-                  <TextField
-                    fullWidth
-                    id='asset-link'
-                    label='Link to Asset / Image'
-                    variant='outlined'
-                    type='text'
-                    placeholder='e.g. https://gateway.pinata.cloud/ipfs/<hash>'
-                    onChange={(event) => setURL(event.target.value)}
-                  />
-                </Box>
+                <Tooltip
+                  title={
+                    <>
+                      To make sure your image has a permanent/decentralized tie to your NFT, the link you put here
+                      should point to an image pinned on IPFS.
+                      <p>This link will be put into the image attribute of the metadata file.</p>
+                      <p>The metadata file will be pinned onto IPFS.</p>
+                      <p>The NFT will point to this pinned metadata file.</p>
+                    </>
+                  }
+                >
+                  <Box>
+                    <TextField
+                      fullWidth
+                      id='asset-link'
+                      label='Link to Asset / Image'
+                      variant='outlined'
+                      type='text'
+                      placeholder='e.g. https://gateway.pinata.cloud/ipfs/<hash>'
+                      onChange={(event) => setURL(event.target.value)}
+                    />
+                  </Box>
+                </Tooltip>
+
                 <Box>
                   <TextField
                     fullWidth
@@ -146,18 +160,21 @@ const Minter = (props) => {
                   />
                 </Box>
 
-                <Button
-                  disabled={!(walletAddress.length > 0)}
-                  variant='contained'
-                  color='primary'
-                  id='mintButton'
-                  onClick={onMintPressed}
-                >
-                  Mint NFT
-                </Button>
-                <Box className={classes.bottombox}>
-                  {status}
-                </Box>
+                <Tooltip title='Metamask will popup and ask you to submnit the transaction to the Smart Contract.'>
+                  <span>
+                    <Button
+                      disabled={!(walletAddress.length > 0)}
+                      variant='contained'
+                      color='primary'
+                      id='mintButton'
+                      onClick={onMintPressed}
+                    >
+                      Mint NFT
+                    </Button>
+                  </span>
+                </Tooltip>
+
+                <Box className={classes.bottombox}>{status}</Box>
               </form>
             </Paper>
           </Grid>
