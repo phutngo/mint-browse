@@ -1,19 +1,65 @@
+# 1 - Deploy Smart Contract
+#### Deploy with Hardhat
+
+1. Deploy the smart contract to rinkeby using hardhat
+```
+npx hardhat run scripts/deploy.js --network rinkeby
+```
+2. Check alchemy.com to see if it recevived the request.
+3. Check if contract has been deployed on etherscan to interact with it using the Transaction Hash
+
+---
+TODO - Before deploying with hardhat we would want to compile and run tests first. Would need to:
+1. Compile
+2. Deploy to localhh
+3. Run Tests
+4. Once tests are good then deploy to rinkeby
+
+#### Deploy with Remix
+Aternatively can use Remix to deploy to to vm with quick ui elements for manual testing.
+Then deploy to rinkeby there.
+
+# 2 - Fronend Configurations
+
+1. Copy the deployed smart contract address and paste it into CONSTANTS.js
+2. (If Hardhat deployed) Copy the ABI from artifacts/contracts/Contractname.json
+3. (If Remix) Copy the ABI from ContractName_metadata.json within artifacts folder and paste it into frontend contract-abi.json
+   1. note abi is the array property of "abi": []
+
+
+TODO - automate the hooking up of the frontend config to deployed contract
+
+4. Now our frontend is hooked up to that smartcontract and can start to read and write to the smart contract.
+
+using a new terminal:
+````
+yarn start
+````
+
+# Customer Minting Process
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Using Hardhat to deploy an NFT smart contract
 https://docs.alchemy.com/alchemy/tutorials/how-to-create-an-nft
 
-deploy the smart contract to ropsten
+deploy the smart contract to rinkeby
 ```
-npx hardhat run scripts/deploy.js --network ropsten
+npx hardhat run scripts/deploy.js --network rinkeby
 ```
-
-
-
-
-
-
-
-
-
 
 
 # TODO
@@ -65,7 +111,7 @@ https://docs.alchemy.com/alchemy/tutorials/nft-minter/~/settings/env#step-5-nft-
 This is good stuff -
 
 ## TODO
-0. Change the endpoint for [NFTE](https://nfte.app/docs) to ropsten or just build my own
+0. Change the endpoint for [NFTE](https://nfte.app/docs) to rinkeby or just build my own
 1. point to our own smart contract
    1. update this with out own smart contract `window.contract = await new web3.eth.Contract(contractABI, contractAddress)`
 2. deploy this to netlify
@@ -91,44 +137,6 @@ https://dev.to/dabit3/the-complete-guide-to-full-stack-ethereum-development-3j13
 # 0 - Generate and Pin Images and Metadata
 1. Using a separate program - this is non part of the final project and will be done later by me
 
-# 1 - Deploy Smart Contract
-## Deploy with Hardhat
-
-TODO - Before deploying with hardhat we would want to compile and run tests first. Would need to:
-1. Compile
-2. Deploy to localhh
-3. Run Tests
-4. Once tests are good then deploy to ropsten
-
-Deploy the smart contract to ropsten using hardhat
-```
-npx hardhat run scripts/deploy.js --network ropsten
-```
-Cehck alchemy.com to see if it recevived the request.
-Check if contract has been deployed on etherscan to interact with it.
-
-## Deploy with Remix
-Aternatively can use Remix to deploy to to vm with quick ui elements for manual testing.
-Then deploy to ropsten there.
-
-# 2 - Fronend Configurations
-
-1. Copy the deployed smart contract address and paste it into CONSTANTS.js
-2. (If Hardhat deployed) Copy the ABI from artifacts/contracts/Contractname.json
-3. (If Remix) Copy the ABI from ContractName_metadata.json within artifacts folder and paste it into frontend contract-abi.json
-   1. note abi is the array property of "abi": []
-
-
-TODO - automate the hooking up of the frontend config to deployed contract
-
-Now our frontend is hooked up to that smartcontract and can start to read and write to the smart contract.
-
-using a new terminal:
-````
-npm start
-````
-
-# Customer Minting Process
 
 
 

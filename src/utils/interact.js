@@ -117,12 +117,26 @@ export const mintNFT = async (url, name, description) => {
   //init the contract
   window.contract = await new web3.eth.Contract(contractABI, contractAddress);
 
-  //set up your Ethereum transaction
-  const transactionParameters = {
-    to: contractAddress, // Required except during contract publications.
-    from: window.ethereum.selectedAddress, // must match user's active address.
-    data: window.contract.methods.mintNFT(window.ethereum.selectedAddress, tokenURI).encodeABI(), //make call to NFT smart contract
-  };
+  //set up your Ethereum transactionParameters
+
+  //check if currentloggedin user is same as owner of contract if so then does not need to pay fee, else need to pay fee to mint
+
+  let transactionParameters = {};
+
+  if (window.ethereum.selectedAddress === "0x9a58d7376e21a561904d68fac239eaaf2915437a") {
+    transactionParameters = {
+      to: contractAddress, // Required except during contract publications.
+      from: window.ethereum.selectedAddress, // must match user's active address.
+      data: window.contract.methods.mintNFT(window.ethereum.selectedAddress, tokenURI).encodeABI(), //make call to NFT smart contract
+    };
+  } else {
+    transactionParameters = {
+      to: contractAddress, // Required except during contract publications.
+      from: window.ethereum.selectedAddress, // must match user's active address.
+      data: window.contract.methods.mintNFT(window.ethereum.selectedAddress, tokenURI).encodeABI(), //make call to NFT smart contract
+      value: "0x2386F26FC10000", // 0.01 eth
+    };
+  }
 
   //sign the transaction via Metamask
   try {
@@ -134,7 +148,9 @@ export const mintNFT = async (url, name, description) => {
       success: true,
       status: (
         <>
-          <Typography variant="body1" color="textPrimary">✅ Check out your transaction on Etherscan:</Typography>
+          <Typography variant='body1' color='textPrimary'>
+            ✅ Check out your transaction on Etherscan:
+          </Typography>
           <Typography variant='body2'>
             <a target='_blank' rel='noreferrer' href={`https://rinkeby.etherscan.io/tx/${txHash}`}>
               {txHash}
