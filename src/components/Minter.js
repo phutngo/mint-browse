@@ -94,6 +94,8 @@ const Minter = (props) => {
           <Grid item xs>
             <Paper>
               <Typography variant='h3'>NFT Minter and Browser</Typography>
+              <Typography variant="subtitle2" align="center"> Smart Contract lives on Rinkeby</Typography>
+              <Typography variant="subtitle2" align="center"> Fee to mint is 0.01 ETH</Typography>
             </Paper>
           </Grid>
 
