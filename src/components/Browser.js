@@ -28,7 +28,7 @@ export const Browser = () => {
           {tokenMetaData.success ? (
             <>
               <Typography variant='h6'>
-                NFT's minted from contract: {tokenMetaData.tokenMetaData.name}
+                NFT's minted to you from this contract: {tokenMetaData.tokenMetaData.name}
                 {" ("}
                 {tokenMetaData.tokenMetaData.symbol}
                 {")"}
