@@ -7,7 +7,6 @@ import { useTokens } from "../utils/useTokens";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
@@ -15,8 +14,8 @@ import Link from "@material-ui/core/Link";
 
 const useStyles = makeStyles({
   root: {
-    maxWidth: 345,
-    margin: "5px"
+    maxWidth: 420,
+    margin: "5px",
   },
   media: {
     height: 140,
@@ -37,21 +36,26 @@ export const NftCard = () => {
                 return (
                   <div key={token.tokenId.toString()}>
                     <Card className={classes.root}>
-                      <CardActionArea>
-                        <CardMedia
-                          className={classes.media}
-                          image='/static/images/cards/contemplative-reptile.jpg'
-                          title='Contemplative Reptile'
-                        />
-                        <CardContent>
-                          <Typography gutterBottom variant='h5' component='h2'>
-                            TokenId:{token.tokenId}
-                          </Typography>
-                          <Typography variant='body2' color='textSecondary' component='p'>
-                            {token.tokenURI}
-                          </Typography>
-                        </CardContent>
-                      </CardActionArea>
+                      <CardMedia
+                        className={classes.media}
+                        image='/static/images/cards/contemplative-reptile.jpg'
+                        title='Contemplative Reptile'
+                      />
+                      <CardContent>
+                        <Typography gutterBottom variant='h6' component='h2'>
+                          Name of NFT
+                        </Typography>
+                        <Typography gutterBottom variant='subtitle2' component='h2'>
+                          TokenId: {token.tokenId}
+                        </Typography>
+
+                        <Typography variant='body2' color='textSecondary' component='p'>
+                          Description of NFT
+                        </Typography>
+
+                        <Typography variant="body2"> Owner:{token.ownerOf} </Typography>
+                      </CardContent>
+
                       <CardActions>
                         <Link href={token.tokenURI} target='_blank' rel='noreferrer'>
                           Link to Token Metadata
