@@ -74,8 +74,6 @@ export const useTokens = (contractAddress, contractABI) => {
   return useQuery({
     queryKey: ["tokens", contractAddress],
     queryFn: () => getAllTokens(contractAddress, contractABI),
-    refetchOnMount: true, //if true, the query will refetch on mount if the data is stale.
-    refetchOnReconnect: true, // if true, the query will refetch on reconnect if the data is stale.
-    refetchOnWindowFocus: true,
+    refetchInterval: 2000,
   });
 };
