@@ -15,50 +15,46 @@ const getAllTokens = async (contractAddress, contractABI) => {
   const provider = new ethers.getDefaultProvider(network, providerOptions);
   const contract = new ethers.Contract(contractAddress, contractABI, provider);
 
-  try {
-    const { address } = await getCurrentWalletConnected();
+  const { address } = await getCurrentWalletConnected();
 
-    const sentLogs = await contract.queryFilter(contract.filters.Transfer(address, null));
-    const receivedLogs = await contract.queryFilter(contract.filters.Transfer(null, address));
+  const sentLogs = await contract.queryFilter(contract.filters.Transfer(address, null));
+  const receivedLogs = await contract.queryFilter(contract.filters.Transfer(null, address));
 
-    const logs = sentLogs
-      .concat(receivedLogs)
-      .sort((a, b) => a.blockNumber - b.blockNumber || a.transactionIndex - b.transactionIndex);
+  const logs = sentLogs
+    .concat(receivedLogs)
+    .sort((a, b) => a.blockNumber - b.blockNumber || a.transactionIndex - b.transactionIndex);
 
-    const owned = new Set();
+  const owned = new Set();
 
-    function addressEqual(a, b) {
-      return a.toLowerCase() === b.toLowerCase();
-    }
-
-    for (const log of logs) {
-      const { from, to, tokenId } = log.args;
-
-      if (addressEqual(to, address)) {
-        owned.add({
-          tokenId: tokenId.toString(),
-          tokenURI: await contract.tokenURI(tokenId),
-          ownerOf: await contract.ownerOf(tokenId),
-          name: await contract.name(),
-          symbol: await contract.symbol(),
-          balanceOf: await contract.balanceOf(address),
-        });
-      } else if (addressEqual(from, address)) {
-        owned.delete({
-          tokenId: tokenId.toString(),
-          tokenURI: await contract.tokenURI(tokenId),
-          ownerOf: await contract.ownerOf(tokenId),
-          name: await contract.name(),
-          symbol: await contract.symbol(),
-          balanceOf: await contract.balanceOf(address),
-        });
-      }
-    }
-
-    return Array.from(owned);
-  } catch (err) {
-    return err;
+  function addressEqual(a, b) {
+    return a.toLowerCase() === b.toLowerCase();
   }
+
+  for (const log of logs) {
+    const { from, to, tokenId } = log.args;
+
+    if (addressEqual(to, address)) {
+      owned.add({
+        tokenId: tokenId.toString(),
+        tokenURI: await contract.tokenURI(tokenId),
+        ownerOf: await contract.ownerOf(tokenId),
+        name: await contract.name(),
+        symbol: await contract.symbol(),
+        balanceOf: await contract.balanceOf(address),
+      });
+    } else if (addressEqual(from, address)) {
+      owned.delete({
+        tokenId: tokenId.toString(),
+        tokenURI: await contract.tokenURI(tokenId),
+        ownerOf: await contract.ownerOf(tokenId),
+        name: await contract.name(),
+        symbol: await contract.symbol(),
+        balanceOf: await contract.balanceOf(address),
+      });
+    }
+  }
+
+  return Array.from(owned);
 };
 
 //react-query state management for the query above

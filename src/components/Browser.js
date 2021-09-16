@@ -19,7 +19,6 @@ export const Browser = () => {
     getAsync();
   }, []);
 
-
   return (
     <>
       <Paper>
