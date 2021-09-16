@@ -22,7 +22,7 @@ const getAllTokens = async (contractAddress, contractABI) => {
   };
   provider.on(filter, (log, event) => {
     // Emitted whenever a token transfer occur
-    console.log(log, "event", event);
+    console.log("----log----", log, "---event---", event);
   });
 
   //get all the tokens of logged in address
@@ -65,7 +65,9 @@ const getAllTokens = async (contractAddress, contractABI) => {
     }
   }
 
-  return Array.from(owned);
+  const reversed = Array.from(owned).reverse()
+
+  return reversed
 };
 
 //react-query state management for the query above
