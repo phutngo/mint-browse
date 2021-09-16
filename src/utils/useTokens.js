@@ -5,7 +5,7 @@ require("dotenv").config();
 
 const { REACT_APP_ETHERSCAN_API, REACT_APP_INFURA_PROJECT_ID } = process.env;
 
-//the query
+//the query of loggedin address
 const getAllTokens = async (contractAddress, contractABI) => {
   const network = "rinkeby";
   const providerOptions = {
@@ -15,6 +15,17 @@ const getAllTokens = async (contractAddress, contractABI) => {
   const provider = new ethers.getDefaultProvider(network, providerOptions);
   const contract = new ethers.Contract(contractAddress, contractABI, provider);
 
+  //detect when token transfer occur at the contract
+  const filter = {
+    address: contractAddress,
+    topics: [ethers.utils.id("Transfer(address,address,uint256)")],
+  };
+  provider.on(filter, (log, event) => {
+    // Emitted whenever a token transfer occur
+    console.log(log, "event", event);
+  });
+
+  //get all the tokens of logged in address
   const { address } = await getCurrentWalletConnected();
 
   const sentLogs = await contract.queryFilter(contract.filters.Transfer(address, null));
@@ -62,6 +73,6 @@ export const useTokens = (contractAddress, contractABI) => {
   return useQuery({
     queryKey: ["tokens", contractAddress],
     queryFn: () => getAllTokens(contractAddress, contractABI),
-    refetchInterval: 2000,
+    //refetchInterval: 2000,
   });
 };
