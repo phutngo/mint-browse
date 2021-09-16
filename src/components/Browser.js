@@ -4,9 +4,8 @@ import { Box, Typography } from "@material-ui/core";
 import { useEffect, useState } from "react";
 import { Paper } from "@material-ui/core";
 
-import { contractAddress, contractABI } from "../utils/CONSTANTS";
+import { contractAddress } from "../utils/CONSTANTS";
 import { getTokenMetadata } from "../utils/getTokenMetadata";
-import { useTokens } from "../utils/useTokens";
 import { NftCard } from "./NftCard";
 
 export const Browser = () => {
