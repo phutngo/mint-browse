@@ -1,10 +1,12 @@
 import { ethers } from "ethers";
+import { useQuery } from "react-query";
 import { getCurrentWalletConnected } from "./interact";
 require("dotenv").config();
 
 const { REACT_APP_ETHERSCAN_API, REACT_APP_INFURA_PROJECT_ID } = process.env;
 
-export const getAllTokens = async (contractAddress, contractABI) => {
+//the query
+const getAllTokens = async (contractAddress, contractABI) => {
   //https://docs.ethers.io/v5/api-keys/
   const network = "rinkeby";
   // Specify your own API keys. Each is optional, and if you omit it the default API key for that service will be used.
@@ -23,7 +25,7 @@ export const getAllTokens = async (contractAddress, contractABI) => {
 
   try {
     const { address } = await getCurrentWalletConnected();
-    
+
     const sentLogs = await contract.queryFilter(contract.filters.Transfer(address, null));
     const receivedLogs = await contract.queryFilter(contract.filters.Transfer(null, address));
 
@@ -61,10 +63,19 @@ export const getAllTokens = async (contractAddress, contractABI) => {
       }
     }
 
-    for (let item of owned) console.log(item);
-
-    return owned;
+    return Array.from(owned);
   } catch (err) {
     return err;
   }
+};
+
+//react-query state management for the query above
+export const useTokens = (contractAddress, contractABI) => {
+  return useQuery({
+    queryKey: ["tokens", contractAddress],
+    queryFn: () => getAllTokens(contractAddress, contractABI),
+    refetchOnMount: true, //if true, the query will refetch on mount if the data is stale.
+    refetchOnReconnect: true, // if true, the query will refetch on reconnect if the data is stale.
+    refetchOnWindowFocus: true,
+  });
 };
