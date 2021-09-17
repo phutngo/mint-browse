@@ -4,8 +4,8 @@ import { getCurrentWalletConnected } from "./interact";
 
 require("dotenv").config();
 
-const { REACT_APP_ETHERSCAN_API, REACT_APP_INFURA_PROJECT_ID } = process.env;
-
+const { REACT_APP_ETHERSCAN_API } = process.env;
+//, REACT_APP_INFURA_PROJECT_ID
 
 //the query of loggedin address
 const getAllTokens = async (contractAddress, contractABI) => {

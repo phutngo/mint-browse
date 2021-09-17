@@ -4,6 +4,7 @@ import { Paper } from "@material-ui/core";
 
 import { contractAddress, contractABI } from "../utils/CONSTANTS";
 import { useTokens } from "../utils/useTokens";
+import { useTokenJson } from "../utils/useTokenJson";
 
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
@@ -11,6 +12,7 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Link from "@material-ui/core/Link";
+
 
 const useStyles = makeStyles({
   root: {
@@ -22,9 +24,15 @@ const useStyles = makeStyles({
   },
 });
 
+
+
 export const NftCard = () => {
   const classes = useStyles();
   const { data: tokensData } = useTokens(contractAddress, contractABI);
+  
+  const { data: tokenJsonData } = useTokenJson("https://gateway.pinata.cloud/ipfs/QmZutDuXLxV3FmJgaAkyEa1eBpgLLZvYeQZ6GERkK9ZXw6");
+
+  console.log("tokenJsonData", tokenJsonData)
 
   return (
     <>
