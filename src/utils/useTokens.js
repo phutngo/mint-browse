@@ -1,16 +1,18 @@
 import { ethers } from "ethers";
 import { useQuery } from "react-query";
 import { getCurrentWalletConnected } from "./interact";
+
 require("dotenv").config();
 
 const { REACT_APP_ETHERSCAN_API, REACT_APP_INFURA_PROJECT_ID } = process.env;
+
 
 //the query of loggedin address
 const getAllTokens = async (contractAddress, contractABI) => {
   const network = "rinkeby";
   const providerOptions = {
     etherscan: REACT_APP_ETHERSCAN_API,
-    infura: REACT_APP_INFURA_PROJECT_ID,
+    //infura: REACT_APP_INFURA_PROJECT_ID,
   };
   const provider = new ethers.getDefaultProvider(network, providerOptions);
   const contract = new ethers.Contract(contractAddress, contractABI, provider);
@@ -52,6 +54,7 @@ const getAllTokens = async (contractAddress, contractABI) => {
         name: await contract.name(),
         symbol: await contract.symbol(),
         balanceOf: await contract.balanceOf(address),
+     
       });
     } else if (addressEqual(from, address)) {
       owned.delete({
@@ -61,6 +64,7 @@ const getAllTokens = async (contractAddress, contractABI) => {
         name: await contract.name(),
         symbol: await contract.symbol(),
         balanceOf: await contract.balanceOf(address),
+      
       });
     }
   }
