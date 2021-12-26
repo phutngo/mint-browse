@@ -34,6 +34,14 @@ export const Browser = () => {
               <a target='_blank' rel='noreferrer' href={`https://rinkeby.etherscan.io/address/${contractAddress}`}>
                 {contractAddress}
               </a>
+
+              <Typography variant='h6'>
+                See the collection of all NFTs minted from this smart contract on OpenSea:
+              </Typography>
+
+              <a target='_blank' rel='noreferrer' href="https://testnets.opensea.io/collection/phunminter">
+                https://testnets.opensea.io/collection/phunminter
+              </a>
             </>
           ) : null}
         </Box>
